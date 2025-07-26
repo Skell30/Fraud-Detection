@@ -1,2 +1,11 @@
 data
 .venv
+notebooks/artifacts/
+# Model artifacts
+*.joblib
+*.pkl
+*.h5
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
