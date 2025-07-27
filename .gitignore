@@ -1,6 +1,6 @@
 data
 .venv
-notebooks/artifacts/
+artifacts/
 # Model artifacts
 *.joblib
 *.pkl
@@ -9,3 +9,4 @@ notebooks/artifacts/
 Thumbs.db
 .vscode/
 .idea/
+notebooks\.ipynb_checkpoints
