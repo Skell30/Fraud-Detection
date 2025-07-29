@@ -17,18 +17,34 @@ explainer = shap.TreeExplainer(model)
 
 print("Calculating SHAP values...")
 
-shap_values = explainer(X_test.iloc[:100])
+shap_values = explainer(X_test.iloc[:100], check_additivity=False)
+
 
 print("Plotting summary plot...")
 
 # Summary Plot (Global importance)
-shap.summary_plot(shap_values[1], X_test, show=False)
-print("Done.")
+shap.summary_plot(shap_values, X_test[:100], show=False)
 plt.tight_layout()
 plt.savefig(r"C:\Users\pc\Fraud-Detection\outputs/fraud_summary_plot.png")
 plt.close()
-
+print("Done.")
 # Force Plot (Local explanation for 1st prediction)
-shap.initjs()
-force_plot = shap.force_plot(explainer.expected_value[1], shap_values[1][0], X_test.iloc[0], matplotlib=True)
+print("Plotting force plot...")
+
+# Get SHAP explanation object for one sample
+sample_shap = shap_values[0]
+
+# Plot and save
+shap.plots.force(
+    sample_shap.base_values,
+    sample_shap.values,
+    sample_shap.data,
+    matplotlib=True,
+    show=False
+)
+
 plt.savefig(r"C:\Users\pc\Fraud-Detection\outputs/fraud_force_plot.png")
+plt.close()
+
+print("Force plot saved.")
+
